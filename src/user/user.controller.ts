@@ -24,7 +24,7 @@ export class UserController {
   }
 
   @Get('/:userId')
-  getSingleUser(@Param('userId', ParseIntPipe) userId: Number) {
+  getSingleUser(@Param('userId', ParseIntPipe) userId: number) {
     return this.userService.getSingleUser(userId);
   }
 
@@ -34,14 +34,14 @@ export class UserController {
   }
 
   @Delete('/:userId')
-  deleteSingleUser(@Param('userId', ParseIntPipe) userId: Number) {
+  deleteSingleUser(@Param('userId', ParseIntPipe) userId: number) {
     return this.userService.deleteSingleUser(userId);
   }
 
   @Patch('/:userId')
   updateSingleUser(
     @Body() updateUserBody: UpdateUserDTO,
-    @Param('userId', ParseIntPipe) userId: Number,
+    @Param('userId', ParseIntPipe) userId: number,
   ) {
     return this.userService.updateSingleUser(updateUserBody, userId);
   }
