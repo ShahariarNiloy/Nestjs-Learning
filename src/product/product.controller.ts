@@ -1,38 +1,12 @@
-import {
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-  Req,
-} from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
 
 @Controller('product')
 export class ProductController {
+  @UseGuards(AuthGuard('jwt'))
   @Get()
-  getProducts() {
-    return 'I am a product';
-  }
-
-  @Get('/:productId')
-  getSingleProduct(@Param() ProductId: Number) {
-    return ProductId;
-  }
-
-  @Post()
-  store(@Req() req: Request) {
-    return req.body;
-  }
-
-  @Delete('/:productId')
-  deleteSingleProduct(@Param() ProductId: Number) {
-    return ProductId;
-  }
-
-  @Patch('/:productId')
-  updateSingleProduct(@Req() req: Request, @Param() ProductId: Number) {
-    return [req.body, ProductId];
+  getProduct() {
+    return 'I am protected route';
   }
 }
